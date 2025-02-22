@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/zxcxz01/aws_study
     targetRevision: main
-    path: k8s  # Kubernetes 배포 YAML이 들어있는 폴더
+    path: nginx  # Kubernetes 배포 YAML이 들어있는 폴더
   destination:
     server: https://kubernetes.default.svc
     namespace: default

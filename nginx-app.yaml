@@ -1,0 +1,134 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"argoproj.io/v1alpha1","kind":"Application","metadata":{"annotations":{},"labels":{"app.kubernetes.io/instance":"nginx-app"},"name":"nginx-app","namespace":"argocd"},"spec":{"destination":{"namespace":"default","server":"https://kubernetes.default.svc"},"project":"default","source":{"path":"nginx","repoURL":"https://github.com/zxcxz01/aws_study","targetRevision":"main"},"syncPolicy":{"automated":{"prune":true,"selfHeal":true}}}}
+  creationTimestamp: "2025-02-22T14:49:09Z"
+  deletionGracePeriodSeconds: 0
+  deletionTimestamp: "2025-02-22T15:24:11Z"
+  generation: 103
+  labels:
+    app.kubernetes.io/instance: nginx-app
+  name: nginx-app
+  namespace: argocd
+  resourceVersion: "2234707"
+  uid: f27b6d7a-fc67-4179-9e22-c8084ae8ee7b
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: nginx
+    repoURL: https://github.com/zxcxz01/aws_study
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+status:
+  conditions:
+  - lastTransitionTime: "2025-02-22T15:23:14Z"
+    message: 'Failed to load target state: failed to generate manifest for source
+      1 of 1: rpc error: code = Unknown desc = Manifest generation error (cached):
+      k8s: app path does not exist'
+    type: ComparisonError
+  controllerNamespace: argocd
+  health:
+    lastTransitionTime: "2025-02-22T15:16:47Z"
+    status: Degraded
+  history:
+  - deployStartedAt: "2025-02-22T15:16:47Z"
+    deployedAt: "2025-02-22T15:16:48Z"
+    id: 0
+    initiatedBy:
+      automated: true
+    revision: 385a453814272522c581be4b60ccde9516bee769
+    source:
+      path: nginx
+      repoURL: https://github.com/zxcxz01/aws_study
+      targetRevision: main
+  - deployStartedAt: "2025-02-22T15:18:29Z"
+    deployedAt: "2025-02-22T15:18:29Z"
+    id: 1
+    initiatedBy:
+      automated: true
+    revision: 385a453814272522c581be4b60ccde9516bee769
+    source:
+      path: nginx
+      repoURL: https://github.com/zxcxz01/aws_study
+      targetRevision: main
+  - deployStartedAt: "2025-02-22T15:19:23Z"
+    deployedAt: "2025-02-22T15:19:23Z"
+    id: 2
+    initiatedBy:
+      automated: true
+    revision: 385a453814272522c581be4b60ccde9516bee769
+    source:
+      path: nginx
+      repoURL: https://github.com/zxcxz01/aws_study
+      targetRevision: main
+  operationState:
+    finishedAt: "2025-02-22T15:24:00Z"
+    message: 'ComparisonError: Failed to load target state: failed to generate manifest
+      for source 1 of 1: rpc error: code = Unknown desc = Manifest generation error
+      (cached): k8s: app path does not exist'
+    operation:
+      initiatedBy:
+        username: admin
+      retry: {}
+      sync:
+        revision: 385a453814272522c581be4b60ccde9516bee769
+        syncStrategy:
+          hook:
+            force: true
+    phase: Error
+    startedAt: "2025-02-22T15:24:00Z"
+    syncResult:
+      revision: ""
+      source:
+        path: nginx
+        repoURL: https://github.com/zxcxz01/aws_study
+        targetRevision: main
+  reconciledAt: "2025-02-22T15:24:01Z"
+  resources:
+  - health:
+      status: Healthy
+    kind: Service
+    name: nginx-service
+    namespace: default
+    requiresPruning: true
+    status: Unknown
+    version: v1
+  - group: apps
+    health:
+      message: Deployment "nginx-deployment" exceeded its progress deadline
+      status: Degraded
+    kind: Deployment
+    name: nginx-deployment
+    namespace: default
+    requiresPruning: true
+    status: Unknown
+    version: v1
+  - group: argoproj.io
+    kind: Application
+    name: nginx-app
+    namespace: argocd
+    requiresPruning: true
+    status: Unknown
+    version: v1alpha1
+  sourceHydrator: {}
+  summary:
+    images:
+    - DOCKER_USERNAME/nginx-app:latest
+  sync:
+    comparedTo:
+      destination:
+        namespace: default
+        server: https://kubernetes.default.svc
+      source:
+        path: nginx
+        repoURL: https://github.com/zxcxz01/aws_study
+        targetRevision: main
+    status: Unknown
