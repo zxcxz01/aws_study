@@ -25,5 +25,5 @@ jobs:
 
     - name: Docker 이미지 빌드 및 푸시
       run: |
-        docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-southeast-1.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest .
+        docker build -t 495599735720.dkr.ecr.ap-southeast-1.amazonaws.com/my-nginx:latest .
         docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-southeast-1.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
