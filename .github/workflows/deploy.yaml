@@ -26,8 +26,9 @@ jobs:
 
     - name: Docker 이미지 빌드 및 푸시
       run: |
-        # 커밋 해시를 이미지 태그로 사용
-        VERSION_TAG=$(echo $GITHUB_SHA | head -c 7)  # 짧은 커밋 해시 (예: abcdef1)
+        # 디렉토리 이동
+        cd ./nginx  # Dockerfile이 위치한 경로로 이동
+        VERSION_TAG=$(echo $GITHUB_SHA | head -c 7)  # 짧은 커밋 해시
         docker build -t 495599735720.dkr.ecr.ap-southeast-1.amazonaws.com/my-nginx:$VERSION_TAG .
         docker push 495599735720.dkr.ecr.ap-southeast-1.amazonaws.com/my-nginx:$VERSION_TAG
 
