@@ -1,0 +1,29 @@
+name: Deploy Nginx to EKS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout 코드 가져오기
+      uses: actions/checkout@v3
+
+    - name: AWS 로그인
+      run: |
+        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws configure set region ap-southeast-1
+
+    - name: ECR 로그인
+      run: |
+        aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-southeast-1.amazonaws.com
+
+    - name: Docker 이미지 빌드 및 푸시
+      run: |
+        docker build -t ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-southeast-1.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest .
+        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.ap-southeast-1.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:latest
