@@ -10,8 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
     - name: Checkout 코드 가져오기
       uses: actions/checkout@v3
+    
+    - name: Download index.html
+      run: wget -O index.html https://raw.githubusercontent.com/zxcxz01/aws_study/main/nginx/index.html
 
     - name: AWS 로그인
       run: |
