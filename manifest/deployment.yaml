@@ -28,7 +28,7 @@ spec:
       containers:
       - name: sample
         image: 495599735720.dkr.ecr.ap-southeast-1.amazonaws.com/my-nginx
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
           name: http
